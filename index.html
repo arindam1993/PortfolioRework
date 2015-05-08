@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Arindam Bose</title>
+	<!-- WebGL Libs -->
+	<script type="text/javascript" src="../vendor/three.min.js"></script>
+	<script type="text/javascript" src="../vendor/renderers/CSS3DRenderer.js"></script>
+	<script type="text/javascript" src="../vendor/renderers/MultiRenderer.js"></script>
+	<script type="text/javascript" src="../vendor/controls/FirstPersonControls.js"></script>
+	<script type="text/javascript" src="../vendor/threestrap.js"></script>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Mustache for templating -->
+	<script type="text/javascript" src="../vendor/mustache.js"></script>
+	<!-- MyStuff -->
+	<script type="text/javascript" src="../js/input.js"></script>
+	<script type="text/javascript" src="../js/helper.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="../js/state.js"></script>
+
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+	<div class="overlay" id="init-splash">
+		CLICK TO START!
+	</div>
+
+	<!-- Mustache template for each project's main card -->
+	<script id="main-template" type="x-tmpl-mustache">
+		<div id = {{proj_id}} class="main-card">
+			<span class = "main-header">{{name}}</span>
+			<img class = "main-image" src="{{{thumbnail}}}"/>
+		</div>
+	</script>
+
+</body>
+</html>

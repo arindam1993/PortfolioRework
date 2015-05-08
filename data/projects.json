@@ -1,0 +1,18 @@
+[
+	{
+		"proj_id": "proj_1",
+		"name": "VR Horror Game",
+		"description": "Test Description Test Description Test descriptionTest Description TestDescription Test Description Test Description TestDescription Test Description Test Description",
+		"thumbnail": "../data/img/proj1/main_head.png",
+		"screenshots": [
+			{
+				"url": "../data/img/proj1/static_skeletons.png",
+				"caption": "Fight Skeletons"
+			},
+			{
+				"url": "../data/img/proj1/pumpkins.png",
+				"caption": "Fight Pumpkins"
+			}
+		]
+	}
+]

@@ -41,6 +41,9 @@ var InputManager = {
 		overlay.addEventListener('click', function(){
 			initHandlers();
 			overlay.style.display = 'none';
+
+			//Switch application state
+			mainStateMachine.switchState(RunningState);
 		});
 		
 	},

@@ -1,22 +1,3 @@
-// var PORTFOLIO.ProjectCard = function(position, rotation, width, height, content){
-
-// 	//Cache all data
-// 	this.position = position;
-// 	this.rotation = rotation;
-// 	this.content = content;
-// 	this.width = width;
-// 	this.height = height;
-
-// 	//Create the div
-// 	this.cardDiv = document.createElement('div');
-// 	this.cardDiv.style.width = this.width;
-// 	this.cardDiv.style.height = this.height;
-// 	this.cardDiv.style.backgroundColor = 'white';
-
-// 	//Create the object3d
-
-// }	
-
 
  function SimpleCard(innerHTML){
 	this.mainDiv = document.createElement('div');

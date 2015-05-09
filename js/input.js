@@ -99,16 +99,22 @@ var InputManager = {
 	var movementX = event.movementX ||
       event.mozMovementX          ||
       event.webkitMovementX       ||
-      0,
+      0.0,
   		movementY = event.movementY ||
       event.mozMovementY      ||
       event.webkitMovementY   ||
-      0;
+      0.0;
 
       console.log(movementX+","+movementY);
 
-      InputManager.rotationAxisX = movementX;
-      InputManager.rotationAxisY = movementY;
+      if(Math.abs(movementX) > 1)
+      {
+      	InputManager.rotationAxisX = movementX ;
+      }
+      else{
+      	InputManager.rotationAxisX = 0.0 ;
+      }
+      InputManager.rotationAxisY = movementY ;
 	},
 	lockMousePointer: function(){
 		//RequestPointer lock if available

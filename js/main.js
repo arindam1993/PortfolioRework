@@ -36,8 +36,7 @@ var InitState = {
 		GLOBAL.mesh.position.set(0, 0, 200)
 		GLOBAL.three.camera.lookAt(GLOBAL.mesh.position)
 		
-		//Initialize input manager
-		InputManager.init();
+
 
 		//Load Project Data
 		$.getJSON('../data/projects.json', function(data){
@@ -54,12 +53,20 @@ var InitState = {
 
 			});
 		});
+
+		//Initialize UI References
+		UIElements.overlay = document.getElementById('init-splash');
+		UIElements.pause = document.getElementById('pause-screen');
+
+		//Initialize input manager
+		InputManager.init();
 	},
 	update: function(){
 		console.log("UPDATE INIT");
 	},
 	exit: function(){
 		console.log("EXIT INIT");
+		UIElements.overlay.style.display = 'none';
 	}
 }
 
@@ -69,6 +76,8 @@ var RunningState = {
 	name: "Running",
 	enter: function(){
 		console.log("ENTER RUNNING");
+
+
 	},
 	update: function(){
 		console.log("UPDATE RUNNING");
@@ -83,16 +92,32 @@ var RunningState = {
 }
 
 
-var PausedStateState = {
+var PausedState = {
 	name: "Paused",
 	enter: function(){
+		console.log("ENTER PAUSED");
+
+		//Display pause screen
+		UIElements.pause.style.display = "block";
+		//Listen for click events on the pause screen
+		UIElements.pause.addEventListener('click',function(){
+			mainStateMachine.switchState(RunningState);
+		},false);
 
 	},
 	update: function(){
-
+		console.log("UPDATE PAUSED");
 	},
 	exit: function(){
+		console.log("EXIT PAUSED");
+		//Hide pause screen
+		UIElements.pause.style.display = "none";
 
+		//Remove event listener
+		UIElements.pause.removeEventListener('click');
+
+		//Request pointer lock again
+		InputManager.lockMousePointer();
 	}
 }
 

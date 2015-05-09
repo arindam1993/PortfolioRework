@@ -1,3 +1,6 @@
+var UIElements = {};
+
+
 var InputManager = {
 	horizontalAxis: 0.0,
 	verticalAxis: 0.0,
@@ -13,34 +16,18 @@ var InputManager = {
 			document.addEventListener('keydown', InputManager.onKeyDown, false);
 			document.addEventListener('keyup', InputManager.onKeyUp, false);
 
+			//Lock Mouse Pointer
+			InputManager.lockMousePointer();
 
-
-			//RequestPointer lock if available
-			var havePointerLock = 'pointerLockElement' in document 
-				|| 'mozPointerLockElement' in document 
-				|| 'webkitPointerLockElement' in document;
-
-			//Bind pointer lock event handlers
-			document.addEventListener( 'pointerlockchange', InputManager.onPointerLockChange, false );
-			document.addEventListener( 'mozpointerlockchange', InputManager.onPointerLockChange, false );
-			document.addEventListener( 'webkitpointerlockchange', InputManager.onPointerLockChange, false );
 			
-			if(havePointerLock){
-				var element = document.body;
-				element.requestPointerLock = element.requestPointerLock 
-					|| element.mozRequestPointerLock 
-					|| element.webkitRequestPointerLock;
-				// Ask the browser to lock the pointer
-				element.requestPointerLock();
-
-			}
 		}
 
 
-		var overlay = document.getElementById('init-splash');
-		overlay.addEventListener('click', function(){
+		
+		UIElements.overlay.addEventListener('click', function(){
+			//Initialize Event Handlers
 			initHandlers();
-			overlay.style.display = 'none';
+			
 
 			//Switch application state
 			mainStateMachine.switchState(RunningState);
@@ -104,6 +91,8 @@ var InputManager = {
 		else{
 			console.log("POINTER UNLOCKED");
 			document.removeEventListener("mousemove", InputManager.onMouseMove, false);
+			//Pause the application
+			mainStateMachine.switchState(PausedState);
 		}
 	},
 	onMouseMove: function(event){
@@ -120,6 +109,27 @@ var InputManager = {
 
       InputManager.rotationAxisX = movementX;
       InputManager.rotationAxisY = movementY;
+	},
+	lockMousePointer: function(){
+		//RequestPointer lock if available
+		var havePointerLock = 'pointerLockElement' in document 
+			|| 'mozPointerLockElement' in document 
+			|| 'webkitPointerLockElement' in document;
+
+		//Bind pointer lock event handlers
+		document.addEventListener( 'pointerlockchange', InputManager.onPointerLockChange, false );
+		document.addEventListener( 'mozpointerlockchange', InputManager.onPointerLockChange, false );
+		document.addEventListener( 'webkitpointerlockchange', InputManager.onPointerLockChange, false );
+		
+		if(havePointerLock){
+			var element = document.body;
+			element.requestPointerLock = element.requestPointerLock 
+				|| element.mozRequestPointerLock 
+				|| element.webkitRequestPointerLock;
+			// Ask the browser to lock the pointer
+			element.requestPointerLock();
+
+		}
 	}
 
 };
